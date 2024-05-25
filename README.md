@@ -34,7 +34,8 @@ def display_guesses(
 """This should output the player's lives.
 See below for sample game to match the formatting"""
 def display_lives(
-    lives: int
+    lives: int,
+    max_lives: int
 ) -> None:
 
 """This should output the guessed letters' places in the secret word.
