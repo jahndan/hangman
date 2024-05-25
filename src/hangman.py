@@ -7,10 +7,10 @@ def display_guesses(guesses: set, secret: str, indent: int = 1) -> None:
     return
 
 
-def display_lives(lives: int, LIVES: int, indent: int = 1) -> None:
+def display_lives(lives: int, max_lives: int, indent: int = 1) -> None:
     tab = " " * indent
-    print(tab, "Lives left:         ", "{}/{}".format(lives, LIVES), sep=str())
-    print(tab, "♥" * lives, "♡" * (LIVES - lives), sep=str())
+    print(tab, "Lives left:         ", "{}/{}".format(lives, max_lives), sep=str())
+    print(tab, "♥" * lives, "♡" * (max_lives - lives), sep=str())
     return
 
 
@@ -26,12 +26,9 @@ def display_partial_word(guesses: set, secret: str) -> None:
 
 def game_prompt(guesses: set) -> str:
     text = "()"
-    while len(text) > 1 or not text.isalpha():
+    while len(text) > 1 or (not text.isalpha()) or text in guesses:
         text = str(input("Your guess? ")).lower()  # get input and lowercase it
-    if text in guesses:
-        return game_prompt(guesses)  # probably shouldn't use recursion
-    else:
-        return text
+    return text
 
 
 def evaluate(

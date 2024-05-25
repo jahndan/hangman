@@ -3,12 +3,10 @@ from words import words
 import hangman as hm
 import random
 
-# additional functions for word-based hangman if necessary
-
 if __name__ == "__main__":
     secret = random.choice(words).lower()
     playing = True
-    lives = LIVES = 10
+    lives = max_lives = 10
     guesses = set()
 
     WIDTH = 50
@@ -16,7 +14,7 @@ if __name__ == "__main__":
         print()  # prints blank line
         print("=" * WIDTH)
         hm.display_guesses(guesses, secret)  # default indent size is already 1
-        hm.display_lives(lives, LIVES)  # default indent size is already 1
+        hm.display_lives(lives, max_lives)  # default indent size is already 1
         print("=" * WIDTH)
         print()
         hm.display_partial_word(guesses, secret)

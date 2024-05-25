@@ -3,13 +3,11 @@ from phrases import phrases
 import hangman as hm
 import random
 
-# additional functions for phrase-based hangman if necessary
-
 if __name__ == "__main__":
     secret = random.choice(phrases).lower()
     secret_alpha = [c for c in secret if c.isalpha()]
     playing = True
-    lives = LIVES = 5
+    lives = max_lives = 5
     guesses = set()
 
     WIDTH = 50
@@ -17,7 +15,7 @@ if __name__ == "__main__":
         print()  # prints blank line
         print("=" * WIDTH)
         hm.display_guesses(guesses, secret)  # default indent size is already 1
-        hm.display_lives(lives, LIVES)  # default indent size is already 1
+        hm.display_lives(lives, max_lives)  # default indent size is already 1
         print("=" * WIDTH)
         print()
         hm.display_partial_word(guesses, secret)
