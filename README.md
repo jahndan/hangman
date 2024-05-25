@@ -69,3 +69,308 @@ def evaluate(
     secret: str
 ) -> tuple[any, int, bool]:
 ```
+
+## Sample game
+Note that the width is 50 characters, that the guess data is presented in alphabetical order, and that at the end of the game it prints again the part of the secret that the player was able to uncover (because it won't loop to prompt for another guess) before announcing the win/loss.
+```
+% python src/hangman-word.py  
+
+==================================================
+ Correct guesses:    []
+ Incorrect guesses:  []
+ Lives left:         10/10
+ ♥♥♥♥♥♥♥♥♥♥
+==================================================
+
+________
+
+Your guess? q
+
+==================================================
+ Correct guesses:    []
+ Incorrect guesses:  [q]
+ Lives left:         9/10
+ ♥♥♥♥♥♥♥♥♥♡
+==================================================
+
+________
+
+Your guess? x
+
+==================================================
+ Correct guesses:    []
+ Incorrect guesses:  [qx]
+ Lives left:         8/10
+ ♥♥♥♥♥♥♥♥♡♡
+==================================================
+
+________
+
+... [incorrect guesses]
+
+Your guess? y
+
+==================================================
+ Correct guesses:    [y]
+ Incorrect guesses:  [kqvwxz]
+ Lives left:         4/10
+ ♥♥♥♥♡♡♡♡♡♡
+==================================================
+
+_y______
+
+... [more incorrect guesses]
+
+Your guess? r
+
+==================================================
+ Correct guesses:    [ry]
+ Incorrect guesses:  [ckquvwxz]
+ Lives left:         2/10
+ ♥♥♡♡♡♡♡♡♡♡
+==================================================
+
+_y__r___
+
+Your guess? t
+
+==================================================
+ Correct guesses:    [ry]
+ Incorrect guesses:  [ckqtuvwxz]
+ Lives left:         1/10
+ ♥♡♡♡♡♡♡♡♡♡
+==================================================
+
+_y__r___
+
+Your guess? p
+_y__r___
+You lost! The answer was: syndrome.
+```
+```
+% python src/hangman-word.py
+
+==================================================
+ Correct guesses:    []
+ Incorrect guesses:  []
+ Lives left:         10/10
+ ♥♥♥♥♥♥♥♥♥♥
+==================================================
+
+_____
+
+Your guess? a
+
+==================================================
+ Correct guesses:    [a]
+ Incorrect guesses:  []
+ Lives left:         10/10
+ ♥♥♥♥♥♥♥♥♥♥
+==================================================
+
+_a___
+
+... [I guessed all the vowels]
+
+_a_oo
+
+Your guess? t
+
+==================================================
+ Correct guesses:    [ao]
+ Incorrect guesses:  [eitu]
+ Lives left:         6/10
+ ♥♥♥♥♥♥♡♡♡♡
+==================================================
+
+_a_oo
+
+Your guess? b
+
+==================================================
+ Correct guesses:    [ao]
+ Incorrect guesses:  [beitu]
+ Lives left:         5/10
+ ♥♥♥♥♥♡♡♡♡♡
+==================================================
+
+_a_oo
+
+Your guess? kk
+Your guess? kz
+Your guess? k
+
+==================================================
+ Correct guesses:    [ako]
+ Incorrect guesses:  [beitu]
+ Lives left:         5/10
+ ♥♥♥♥♥♡♡♡♡♡
+==================================================
+
+ka_oo
+
+Your guess? k
+Your guess? z
+kazoo
+You won with 5 lives!
+```
+```
+% python src/hangman-phrase.py
+
+==================================================
+ Correct guesses:    []
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+___ ____ ______ ____ ____ __ __ ___
+
+Your guess? a
+
+==================================================
+ Correct guesses:    [a]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+a__ ____ ______ ____ ____ __ a_ ___
+
+Your guess? e
+
+==================================================
+ Correct guesses:    [ae]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+a__ ____ ______ ____ ___e __ a_ e__
+
+Your guess? i
+
+==================================================
+ Correct guesses:    [aei]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+a__ ____ __i___ ____ ___e __ a_ e__
+
+Your guess? o
+
+==================================================
+ Correct guesses:    [aeio]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+a__ _oo_ __i___ ____ _o_e _o a_ e__
+
+Your guess? u
+
+==================================================
+ Correct guesses:    [aeiou]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+a__ _oo_ __i___ _u__ _o_e _o a_ e__
+
+Your guess? ll
+Your guess? l
+
+==================================================
+ Correct guesses:    [aeilou]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all _oo_ __i___ _u__ _o_e _o a_ e__
+
+Your guess? g
+
+==================================================
+ Correct guesses:    [aegilou]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all goo_ __i_g_ _u__ _o_e _o a_ e__
+
+Your guess? d
+
+==================================================
+ Correct guesses:    [adegilou]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good __i_g_ _u__ _o_e _o a_ e_d
+
+Your guess? n
+
+==================================================
+ Correct guesses:    [adegilnou]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good __ing_ _u__ _o_e _o an end
+
+Your guess? t
+
+==================================================
+ Correct guesses:    [adegilnotu]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good t_ing_ _u_t _o_e to an end
+
+Your guess? m
+
+==================================================
+ Correct guesses:    [adegilmnotu]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good t_ing_ mu_t _ome to an end
+
+Your guess? c
+
+==================================================
+ Correct guesses:    [acdegilmnotu]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good t_ing_ mu_t come to an end
+
+Your guess? s
+
+==================================================
+ Correct guesses:    [acdegilmnostu]
+ Incorrect guesses:  []
+ Lives left:         5/5
+ ♥♥♥♥♥
+==================================================
+
+all good t_ings must come to an end
+
+Your guess? h
+all good things must come to an end
+You won with 5 lives!
+```
