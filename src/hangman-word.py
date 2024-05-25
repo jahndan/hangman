@@ -1,4 +1,5 @@
 # imports
+from words import words
 import random
 
 # additional functions for phrase-based hangman if necessary
